@@ -8,5 +8,34 @@ namespace LapichkaShop.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options){}
         public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Animal> Animals { get; set; }
+        public DbSet<Adoption> Adoptions { get; set; }
+        public DbSet<AnimalType> AnimalTypes { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Animal>()
+            .HasOne(d => d.AnimalType)
+            .WithMany(t => t.Animals)
+            .HasForeignKey(d => d.TypeId);
+
+            modelBuilder.Entity<Adoption>()
+            .HasOne(d => d.Animal)
+            .WithMany(t => t.AdoptionRequests)
+            .HasForeignKey(d => d.AnimalId);
+
+            modelBuilder.Entity<Adoption>()
+            .HasOne(d => d.Employee)             
+            .WithMany(t => t.ProcessedRequests)          
+            .HasForeignKey(d => d.EmployeeId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Adoption>()
+            .HasOne(d => d.Adopter)             
+            .WithMany(t => t.AdoptionRequests)          
+            .HasForeignKey(d => d.AdopterId)
+            .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }
