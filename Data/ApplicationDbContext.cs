@@ -11,6 +11,8 @@ namespace LapichkaShop.Data
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Adoption> Adoptions { get; set; }
         public DbSet<AnimalType> AnimalTypes { get; set; }
+        public DbSet<VetProcedure> VetProcedures { get; set; }
+        public DbSet<Application> Applications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -35,6 +37,18 @@ namespace LapichkaShop.Data
             .HasOne(d => d.Adopter)             
             .WithMany(t => t.AdoptionRequests)          
             .HasForeignKey(d => d.AdopterId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VetProcedure>()
+            .HasOne(d => d.Animal)
+            .WithMany(t => t.VetProcedures)
+            .HasForeignKey(d => d.AnimalId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Application>()
+            .HasOne(d => d.User)
+            .WithMany(t => t.Applications)
+            .HasForeignKey(d => d.UserId)
             .OnDelete(DeleteBehavior.Restrict);
         }
     }

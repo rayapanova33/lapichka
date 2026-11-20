@@ -4,6 +4,11 @@ namespace LapichkaShop.Data.Entities
 {
     public class Adoption
     {
+        public Adoption()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public string Id { get; set; }
         public string AdopterId { get; set; }
         public string AnimalId { get; set; }

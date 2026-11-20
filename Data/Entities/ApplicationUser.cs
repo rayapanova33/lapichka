@@ -9,5 +9,6 @@ namespace LapichkaShop.Data.Entities
         public DateTime RegistrationDate { get; set; }
         public ICollection<Adoption> AdoptionRequests { get; set; }
         public ICollection<Adoption> ProcessedRequests { get; set; }
+        public ICollection<Application> Applications { get; set; }
     }
 }

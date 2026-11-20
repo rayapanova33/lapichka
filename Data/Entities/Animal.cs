@@ -4,6 +4,11 @@ namespace LapichkaShop.Data.Entities
 {
     public class Animal
     {
+        public Animal()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public string Id { get; set; }
         public string Name { get; set; }
         public string TypeId { get; set; }
@@ -15,6 +20,9 @@ namespace LapichkaShop.Data.Entities
         public AnimalStatus Status { get; set; }
         public ICollection<Adoption> AdoptionRequests { get; set; }
         public AnimalType AnimalType { get; set; }
+        public ICollection<VetProcedure> VetProcedures { get; set; }
+        public bool IsDeleted { get; set; }
+
 
     }
 }
