@@ -55,7 +55,7 @@ namespace LapichkaShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AnimalType animalType)
+        public async Task<IActionResult> Create([Bind("Name")] AnimalType animalType)
         {
             if (ModelState.IsValid)
             {
@@ -116,39 +116,7 @@ namespace LapichkaShop.Areas.Admin.Controllers
             }
             return View(animalType);
         }
-
-        // GET: Admin/AnimalTypes/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var animalType = await _context.AnimalTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (animalType == null)
-            {
-                return NotFound();
-            }
-
-            return View(animalType);
-        }
-
-        // POST: Admin/AnimalTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var animalType = await _context.AnimalTypes.FindAsync(id);
-            if (animalType != null)
-            {
-                _context.AnimalTypes.Remove(animalType);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
 
         private bool AnimalTypeExists(string id)
         {
