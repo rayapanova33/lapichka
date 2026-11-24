@@ -60,7 +60,7 @@ namespace LapichkaShop.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Adoptions");
+                    b.ToTable("Adoptions", (string)null);
                 });
 
             modelBuilder.Entity("LapichkaShop.Data.Entities.Animal", b =>
@@ -104,7 +104,7 @@ namespace LapichkaShop.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animals", (string)null);
                 });
 
             modelBuilder.Entity("LapichkaShop.Data.Entities.AnimalType", b =>
@@ -118,7 +118,7 @@ namespace LapichkaShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AnimalTypes");
+                    b.ToTable("AnimalTypes", (string)null);
                 });
 
             modelBuilder.Entity("LapichkaShop.Data.Entities.Application", b =>
@@ -168,7 +168,7 @@ namespace LapichkaShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", (string)null);
                 });
 
             modelBuilder.Entity("LapichkaShop.Data.Entities.ApplicationUser", b =>
@@ -274,7 +274,7 @@ namespace LapichkaShop.Migrations
 
                     b.HasIndex("AnimalId");
 
-                    b.ToTable("VetProcedures");
+                    b.ToTable("VetProcedures", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -302,6 +302,26 @@ namespace LapichkaShop.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

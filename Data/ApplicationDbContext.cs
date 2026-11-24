@@ -1,6 +1,8 @@
 ﻿using LapichkaShop.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace LapichkaShop.Data
 {
@@ -50,6 +52,27 @@ namespace LapichkaShop.Data
             .WithMany(t => t.Applications)
             .HasForeignKey(d => d.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+             {
+                Id = "1",
+                Name = LapichkaShop.Data.Constants.UserRoles.Admin,
+                NormalizedName = LapichkaShop.Data.Constants.UserRoles.Admin.ToUpper()
+             },
+            new IdentityRole
+            {
+                Id = "2",
+                Name = LapichkaShop.Data.Constants.UserRoles.Employee,
+                NormalizedName = LapichkaShop.Data.Constants.UserRoles.Employee.ToUpper()
+            },
+            new IdentityRole
+            {
+                Id = "3",
+                Name = LapichkaShop.Data.Constants.UserRoles.User,
+                NormalizedName = LapichkaShop.Data.Constants.UserRoles.User.ToUpper()
+            });
+
         }
     }
 }
